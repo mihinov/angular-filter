@@ -1,15 +1,19 @@
+import { Injectable } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
+@Injectable()
 export class MatPaginatorIntlCro extends MatPaginatorIntl {
 
-  itemsPerPageLabel = 'Stavki po stranici';
-  nextPageLabel = 'Slijedeća stranica';
-  previousPageLabel = 'Prethodna stranica';
+  itemsPerPageLabel = 'Элементов на странице';
+  nextPageLabel = 'Следующая страница';
+  previousPageLabel = 'Предыдущая страница';
+  lastPageLabel = 'Последняя страница';
+  firstPageLabel = 'Первая страница';
 
   getRangeLabel = (page: number, pageSize: number, length: number) => {
-    console.log('aaaaaaaaaaaa');
+    const of = 'из';
     if (length === 0 || pageSize === 0) {
-      return '0 od ' + length;
+      return `0 ${of} ` + length;
     }
     length = Math.max(length, 0);
     const startIndex = page * pageSize;
@@ -17,8 +21,7 @@ export class MatPaginatorIntlCro extends MatPaginatorIntl {
     const endIndex = startIndex < length ?
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
-    return startIndex + 1 + ' - ' + endIndex + ' od ' + length;
-    console.log(1);
+    return startIndex + 1 + ' - ' + endIndex + ` ${of} ` + length;
   }
 
 }
