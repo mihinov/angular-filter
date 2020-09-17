@@ -8,6 +8,10 @@ html {
   height: 100%;
 }
 
+table {
+  width: 100%;
+}
+
 body {
   min-height: 100%;
 }
@@ -18,4 +22,10 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+
+app-root {
+  display: block;
+  padding: 40px 0;
 }

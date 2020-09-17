@@ -7,7 +7,9 @@ import { FilterComponent } from './filter/filter.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlCro } from './shared/classes/MatPaginatorIntlCro';
-import { TableComponent } from './filter/table/table.component';
+import { MatInputModule } from '@angular/material/input';
+
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { TableComponent } from './filter/table/table.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule
   ],
   providers: [{
     provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro
