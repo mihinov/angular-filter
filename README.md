@@ -11,6 +11,10 @@ Angular-приложение откроется  в браузере по умо
 <br>
 Внимание: у вас в системе должны быть установлены `npm` и `node.js` - <a href="https://nodejs.org/ru/">ссылка</a><br>
 
+## Что использовано:
+
+Я не делал сам оформление, я использовал готовые компоненты `Angular Material` - <a href="https://material.angular.io/components/categories">ссылка</a>
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
