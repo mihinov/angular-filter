@@ -13,13 +13,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
-import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilterComponent,
-    TableComponent
+    FilterComponent
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,13 @@ export class FilterComponent implements OnInit {
   }
 
   validate(): void {
-    const date = this.range.value;
+    const date: {start: Date; end: Date} = this.range.value;
+
+    if (!date.start && !date.end) {
+      this.isValid = true;
+      return;
+    }
+
     if (!date.start || !date.end) {
       this.isValid = false;
       return;
