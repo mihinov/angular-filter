@@ -35,7 +35,10 @@ export class AppComponent implements OnInit {
         if (
             ( filter.id === item.id ) ||
             ( item.name && item.name?.trim().toLowerCase().includes(filter.name?.trim().toLowerCase())) ||
-            ( filter.date.start <= item.date && filter.date.end >= item.date )
+            (
+              filter.date &&
+              filter.date.start <= item.date && filter.date.end >= item.date
+            )
           ) {
           return true;
         } else {
