@@ -12,7 +12,7 @@ export class TableComponent implements AfterViewInit, OnInit {
 
   @Input() elementData: PeriodicElement[];
   displayedColumns: string[] = ['id', 'name', 'date'];
-  dataSource: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<PeriodicElement>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

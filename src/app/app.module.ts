@@ -10,7 +10,8 @@ import { MatPaginatorIntlCro } from './shared/classes/MatPaginatorIntlCro';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormsModule, NgControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 import { TableComponent } from './table/table.component';
 
@@ -28,7 +29,9 @@ import { TableComponent } from './table/table.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [{
     provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro

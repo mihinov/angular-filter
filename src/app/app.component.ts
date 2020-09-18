@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PeriodicElement } from './shared/interfaces';
+import { PeriodicElement, Filter } from './shared/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,8 @@ import { PeriodicElement } from './shared/interfaces';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  filter = {};
 
   elementData: PeriodicElement[] = [
     { id: 1, name: 'Hydrogen', date: new Date(2020, 9, 1) },
@@ -22,4 +24,10 @@ export class AppComponent {
   ];
 
   title = 'angular-filter';
+
+  applyFilter(filter: Filter): void {
+    console.log(filter);
+    this.elementData.splice(4, 1);
+    console.log(this.elementData);
+  }
 }

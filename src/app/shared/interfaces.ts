@@ -3,3 +3,14 @@ export interface PeriodicElement {
   id: number;
   date: Date;
 }
+
+export interface Filter {
+  id?: number;
+  date?: FilterDate;
+  name?: string;
+}
+
+export interface FilterDate {
+  start: Date;
+  end: Date;
+}
