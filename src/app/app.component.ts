@@ -8,7 +8,7 @@ import { PeriodicElement, Filter } from './shared/interfaces';
 })
 export class AppComponent {
 
-  filter = {};
+  filter: Filter = {};
 
   elementData: PeriodicElement[] = [
     { id: 1, name: 'Hydrogen', date: new Date(2020, 9, 1) },
@@ -26,8 +26,7 @@ export class AppComponent {
   title = 'angular-filter';
 
   applyFilter(filter: Filter): void {
-    console.log(filter);
-    this.elementData.splice(4, 1);
-    console.log(this.elementData);
+    this.filter = filter;
+    console.log(this.filter);
   }
 }

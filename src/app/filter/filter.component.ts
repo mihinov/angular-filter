@@ -35,6 +35,7 @@ export class FilterComponent implements OnInit {
 
   submitFilter(): void {
     const filter: Filter = {};
+    const date = this.range.value;
 
     if (this.id) {
       filter.id = this.id;
@@ -44,7 +45,7 @@ export class FilterComponent implements OnInit {
       filter.name = this.name;
     }
 
-    if (this.range.value.date) {
+    if (date.start && date.end) {
       filter.date = this.range.value;
     }
 

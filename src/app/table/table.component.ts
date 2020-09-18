@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { PeriodicElement } from '../shared/interfaces';
+import { PeriodicElement, Filter } from '../shared/interfaces';
 
 @Component({
   selector: 'app-table',
@@ -11,6 +11,7 @@ import { PeriodicElement } from '../shared/interfaces';
 export class TableComponent implements AfterViewInit, OnInit {
 
   @Input() elementData: PeriodicElement[];
+  @Input() filter: Filter[];
   displayedColumns: string[] = ['id', 'name', 'date'];
   dataSource: MatTableDataSource<PeriodicElement>;
 
