@@ -30,21 +30,23 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    const filteredArray: PeriodicElement[] = this.elementData.slice()
-      .filter((item) => {
-        if (
-            ( filter.id === item.id ) ||
-            ( item.name && item.name?.trim().toLowerCase().includes(filter.name?.trim().toLowerCase())) ||
-            (
-              filter.date &&
-              filter.date.start <= item.date && filter.date.end >= item.date
-            )
-          ) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+    let filteredArray: PeriodicElement[] = this.elementData;
+
+    if (filter?.id) {
+      filteredArray = filteredArray.slice()
+        .filter(item => filter.id === item.id);
+    }
+
+    if (filter?.name) {
+      filteredArray = filteredArray.slice()
+        .filter(item => item.name.trim().toLowerCase().includes(filter.name.trim().toLowerCase()));
+    }
+
+    if (filter?.date) {
+      filteredArray = filteredArray.slice()
+        .filter(item => filter.date.start <= item.date && filter.date.end >= item.date);
+    }
+
     this.dataSource.data = filteredArray;
   }
 

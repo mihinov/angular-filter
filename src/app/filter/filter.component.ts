@@ -36,7 +36,7 @@ export class FilterComponent implements OnInit {
       this.isValid = false;
       return;
     }
-    this.isValid = date.start < date.end;
+    this.isValid = date.start <= date.end;
   }
 
   submitFilter(): void {
