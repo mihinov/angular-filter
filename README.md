@@ -13,7 +13,7 @@ Angular-приложение откроется  в браузере по умо
 
 ## Что использовано:
 
-Я не делал сам оформление, я использовал готовые компоненты `Angular Material` - <a href="https://material.angular.io/components/categories">ссылка</a>
+Я не делал сам оформление, использовал готовые компоненты `Angular Material` - <a href="https://material.angular.io/components/categories">ссылка</a>
 
 ## Development server
 
