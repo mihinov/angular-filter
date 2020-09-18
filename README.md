@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
 
+## Для запуска:
+
+Скачиваете репозиторий, в папке с проектом, в консоли пишите `npm install` для установки всех зависимостей.<br>
+Далее для запуска Angular-приложения необходимо написать `npm run start`
+<br>
+Angular-приложение откроется  в браузере по умолчанию, на порту `http://localhost:4200/`
+<br>
+Внимание: у вас в системе должны быть установлен `npm` и `node.js` - <a href="https://nodejs.org/ru/">ссылка</a><br>
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
