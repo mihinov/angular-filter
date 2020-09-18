@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 <br>
 Angular-приложение откроется  в браузере по умолчанию, на порту `http://localhost:4200/`
 <br>
-Внимание: у вас в системе должны быть установлен `npm` и `node.js` - <a href="https://nodejs.org/ru/">ссылка</a><br>
+Внимание: у вас в системе должны быть установлены `npm` и `node.js` - <a href="https://nodejs.org/ru/">ссылка</a><br>
 
 ## Development server
 
