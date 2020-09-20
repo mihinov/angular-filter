@@ -15,7 +15,7 @@ Angular-приложение откроется  в браузере по умо
 
 Я не делал сам оформление, использовал готовые компоненты `Angular Material` - <a href="https://material.angular.io/components/categories">ссылка</a>
 
-![Image alt](https://gm1.ggpht.com/Tne7LJYGBmRoBoovzz3YLBVnj05KKQcouE1xiPV4uN4a0yNsVEUiysdBZXYFiGKh00TAQq50ktdQdJnxbzepYRk94t92RXXU0plUEBCj1sY_KHopcVVRjk-hPVJm_Uokn9asAkZAB7Mx2zb0abCJKsFm1qMOdvkT1Pl7a1vx75c1mA1yMPZEwVoEMUPqTKlKagCE4J2QPOSh2D8oIHtFAyUhOXavtS_QdAXhoBEDkbqqkw1dT4G4yvTPAqDjPPkka6dK-Htgk3dJGmJfCE4JUdlg9cN2IaRkyfLY_afawX6HInQdFqPD_ziyz7BilOFaMoq1v_CDJJOz1dXbXccYxUuGmn6H4TothCWdT0wrHbfpUURMni6FzXGxlqyigmPrSYktTjeaNaK3GIR5yQGW7X0CDwOhaH6f-o4BXqqGIzhJQLv2YPdVUln30X1K3q8BDpi1Kx_fEBF0RZtnjfc0bfo8evglvckAyLRadOFvTzAJj4w-_YA5GJEYLZ2rr0Rgy0PQk6uAFWmm75hDYJWFjDapcBixfjlt11s6aOBLwoNPNR-oVnifMBaCjwbnDL3EmB2tQ_SeyqXL-fJXofgFfWKR1ZvKrzzrEOtnqKXDaR_14tFWSOfTOnEdPzkoRZvZuhdJrWXqct0WbmdMtp-UYEdpRrbxk50w5E11Mhr7-HuBmS5wqmPTOB8uaz-r2OaRw6z2gKVEZhvrOvc-IG9tAssHYG9D5IBevTGSNnKhmo_8G-fm3dt0kM2e5yZ8tqqA2pWF8w=s0-l75-ft-l75-ft)
+![Image alt](https://github.com/mihinov/angular-filter/raw/master/image.png)
 
 ## Development server
 
