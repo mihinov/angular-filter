@@ -15,7 +15,7 @@ Angular-приложение откроется  в браузере по умо
 
 Я не делал сам оформление, использовал готовые компоненты `Angular Material` - <a href="https://material.angular.io/components/categories">ссылка</a>
 
-![Image alt](https://github.com/mihinov/angular-filter/raw/master/image.png)
+![Image alt](https://github.com/mihinov/angular-filter/raw/master/previe.png)
 
 ## Development server
 
