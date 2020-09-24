@@ -1,5 +1,5 @@
 <form
-  (submit)="submitFilter()"
+  (submit)="submitFilter()" [formGroup]="form"
 >
 
   <div class="full-width example-form">
@@ -8,10 +8,8 @@
       <mat-label for="id">ID</mat-label>
       <input
         matInput
-        [(ngModel)]="id"
-        type="number"
-        name="id"
-        min="1"
+        type="text"
+        formControlName="id"
       >
     </mat-form-field>
 
@@ -19,22 +17,22 @@
       <mat-label>Название</mat-label>
       <input
         matInput
-        name="name"
-        [(ngModel)]="name"
+        type="text"
+        formControlName="name"
       >
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Выберите диапозон</mat-label>
-      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <mat-date-range-input [rangePicker]="picker">
         <input matStartDate formControlName="start" placeholder="Начало" (ngModelChange)="validate()">
         <input matEndDate formControlName="end" placeholder="Конец" (ngModelChange)="validate()">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
 
-      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Невалидная начальная дата</mat-error>
-      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Невалидная конечная дата</mat-error>
+      <mat-error *ngIf="form.controls.start.hasError('matStartDateInvalid')">Невалидная начальная дата</mat-error>
+      <mat-error *ngIf="form.controls.end.hasError('matEndDateInvalid')">Невалидная конечная дата</mat-error>
     </mat-form-field>
 
 
@@ -42,11 +40,19 @@
   </div> <!-- .full-width -->
 
   <button
+    style="margin-right: 30px"
     mat-raised-button
     type="submit"
     [disabled]="!isValid"
   >
     Применить фильтр
+  </button>
+  <button
+    mat-raised-button
+    type="button"
+    (click)="resetForm()"
+  >
+    Очистить поля
   </button>
 
   <!-- <p>Selected range: {{range.value | json}}</p> -->

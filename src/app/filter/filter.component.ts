@@ -9,22 +9,22 @@ import { Filter } from '../shared/interfaces';
 })
 export class FilterComponent implements OnInit {
 
-  @Output() filter = new EventEmitter<any>();
+  @Output() filter = new EventEmitter<Filter>();
 
-  id: number;
-  name: string;
-  range: FormGroup;
   isValid = true;
+  form: FormGroup;
 
   ngOnInit(): void {
-    this.range = new FormGroup({
+    this.form = new FormGroup({
       start: new FormControl(),
-      end: new FormControl()
+      end: new FormControl(),
+      id: new FormControl(),
+      name: new FormControl()
     });
   }
 
   validate(): void {
-    const date: {start: Date; end: Date} = this.range.value;
+    const date: {start: Date; end: Date} = this.form.value;
 
     if (!date?.start && !date?.end) {
       this.isValid = true;
@@ -46,22 +46,27 @@ export class FilterComponent implements OnInit {
 
   submitFilter(): void {
     const filter: Filter = {};
-    const date = this.range.value;
+    const { id, name, start, end } = this.form.value;
+    const date = {start, end};
 
-    if (this.id) {
-      filter.id = this.id;
+    if (id) {
+      filter.id = id;
     }
 
-    if (this.name) {
-      filter.name = this.name;
+    if (name) {
+      filter.name = name;
     }
 
-    if (date.start && date.end) {
-      filter.date = this.range.value;
+    if (date?.start && date?.end) {
+      filter.date = date;
     }
 
     this.filter.emit(filter);
   }
 
+  resetForm(): void {
+    this.form.reset();
+    this.filter.emit();
+  }
 
 }

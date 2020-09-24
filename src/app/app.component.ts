@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { PeriodicElement, Filter } from './shared/interfaces';
+import { Filter, Record } from './shared/interfaces';
 import { RecordsService } from './shared/records.service';
 
 @Component({
@@ -13,37 +13,44 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   filter: Filter = {};
   displayedColumns: string[] = ['id', 'name', 'date'];
-  dataSource: MatTableDataSource<PeriodicElement>;
+  dataSource: MatTableDataSource<Record>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  elementData: PeriodicElement[];
+  records: Record[];
+  allRecords: Record[];
 
   title = 'angular-filter';
 
   constructor(private recordsService: RecordsService) { }
 
   ngOnInit(): void {
-    this.elementData = this.getRemoteData();
-    this.dataSource = new MatTableDataSource<PeriodicElement>(this.elementData);
+    this.recordsService.fetchAll()
+      .subscribe(records => {
+        this.records = records;
+        this.allRecords = records;
+        this.dataSource = new MatTableDataSource<Record>(this.records);
+        this.dataSource.paginator = this.paginator;
+      });
+
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+
   }
 
-  applyFilter(filter: Filter): void {
+  applyFilter(filter: Filter = {}): void {
     this.filter = filter;
 
     if (Object.keys(filter).length === 0) {
-      this.dataSource.data = this.getRemoteData();
+      this.dataSource.data = this.allRecords;
       return;
     }
 
-    let filteredArray: PeriodicElement[] = this.elementData;
+    let filteredArray: Record[] = this.records;
 
     if (filter?.id) {
       filteredArray = filteredArray.slice()
-        .filter(item => filter.id === item.id);
+        .filter(item => item.id.trim().toLowerCase().includes(filter.id.trim().toLowerCase()));
     }
 
     if (filter?.name) {
@@ -63,28 +70,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getRemoteData(): PeriodicElement[] {
-    return [
-      { id: 1, name: 'Hydrogen', date: new Date(2020, 8, 1) },
-      { id: 2, name: 'Helium', date: new Date(2020, 8, 2) },
-      { id: 3, name: 'Lithium', date: new Date(2020, 8, 3) },
-      { id: 4, name: 'Beryllium', date: new Date(2020, 8, 4) },
-      { id: 5, name: 'Boron', date: new Date(2020, 8, 5) },
-      { id: 6, name: 'Carbon', date: new Date(2020, 8, 6) },
-      { id: 7, name: 'Nitrogen', date: new Date(2020, 8, 7) },
-      { id: 8, name: 'Oxygen', date: new Date(2020, 8, 8) },
-      { id: 9, name: 'Fluorine', date: new Date(2020, 8, 9) },
-      { id: 10, name: 'Neon', date: new Date(2020, 8, 10) },
-      { id: 1, name: 'Hydrogen', date: new Date(2020, 8, 1) },
-      { id: 2, name: 'Helium', date: new Date(2020, 8, 2) },
-      { id: 3, name: 'Lithium', date: new Date(2020, 8, 3) },
-      { id: 4, name: 'Beryllium', date: new Date(2020, 8, 4) },
-      { id: 5, name: 'Boron', date: new Date(2020, 8, 5) },
-      { id: 6, name: 'Carbon', date: new Date(2020, 8, 6) },
-      { id: 7, name: 'Nitrogen', date: new Date(2020, 8, 7) },
-      { id: 8, name: 'Oxygen', date: new Date(2020, 8, 8) },
-      { id: 9, name: 'Fluorine', date: new Date(2020, 8, 9) },
-      { id: 10, name: 'Neon', date: new Date(2020, 8, 10) }
-    ];
+  onSubmitAddRecord(record: Record): void {
+    this.records.push(record);
+    this.allRecords = this.records;
+    this.dataSource.data = this.records;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RecordsService } from '../shared/records.service';
 import { Record } from '../shared/interfaces';
@@ -14,6 +14,8 @@ export class FormAddRecordComponent implements OnInit {
   isValid = false;
   record: FormGroup;
 
+  @Output() submitEmit = new EventEmitter<any>();
+
   constructor(private recordsService: RecordsService) { }
 
   ngOnInit(): void {
@@ -26,28 +28,22 @@ export class FormAddRecordComponent implements OnInit {
 
   onSubmit(): void {
     const {name, date} = this.record.value;
-    const dateMoment = moment(date).format('MM-DD-YYYY');
-    const record = {
-      date: dateMoment,
-      name
-    };
-    // console.log(record);
+    const record = {name, date};
 
     this.isValid = false;
 
-    const allRecords = this.recordsService.load(date)
+    this.recordsService.create(record)
       .subscribe(
-        res => {
-          console.log(res);
+        (res) => {
+          const newRecord: Record = {
+            name: record.name,
+            date: record.date,
+            id: res.name
+          };
+          this.isValid = true;
+          this.submitEmit.emit(newRecord);
         }
       );
-    // this.recordsService.create(record)
-    //   .subscribe(
-    //     (res) => {
-    //       console.log(res);
-    //       this.isValid = true;
-    //     }
-    //   );
   }
 
   validate(): void {
