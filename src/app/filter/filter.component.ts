@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { range } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Filter } from '../shared/interfaces';
 
 @Component({
@@ -32,10 +31,16 @@ export class FilterComponent implements OnInit {
       return;
     }
 
+    if (!date?.start || !date?.end) {
+      this.isValid = false;
+      return;
+    }
+
     if (!date.start || !date.end) {
       this.isValid = false;
       return;
     }
+
     this.isValid = date.start <= date.end;
   }
 

@@ -2,3 +2,25 @@ app-filter {
   margin-bottom: 40px;
   display: block;
 }
+
+table td {
+  position: relative;
+}
+
+app-edit-table {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 24px;
+  z-index: 1;
+  --size: 20px;
+  width: var(--size);
+  height: var(--size);
+}
+
+
+app-form-add-record {
+  display: block;
+  margin-top: 40px
+}

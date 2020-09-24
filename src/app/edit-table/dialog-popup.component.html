@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Редактировать запись</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Удалить запись?</mat-label>
+    <button mat-raised-button (click)="deleteRecord()"></button>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Редактировать запись</mat-label>
+    <!-- <input
+      type="text"
+      matInput
+      [(ngModel)]="record.name"
+    > -->
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onNoClick()"
+    type="button"
+  >Не сохранять</button>
+  <button
+    mat-raised-button
+    (click)="saveRecord()"
+    cdkFocusInitial
+  >Сохранить</button>
+</div>

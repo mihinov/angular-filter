@@ -1,0 +1,26 @@
+<form (submit)="onSubmit()" [formGroup]="record">
+  <div class="full-width example-form">
+
+    <mat-form-field>
+      <mat-label for="name">Название</mat-label>
+      <input (ngModelChange)="validate()" matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Выберите дату</mat-label>
+      <input matInput formControlName="date" [matDatepicker]="picker" (ngModelChange)="validate()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <button
+    mat-raised-button
+    type="submit"
+    [disabled]="!isValid"
+  >
+    Добавить элемент
+  </button>
+
+</form>
