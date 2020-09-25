@@ -22,7 +22,7 @@
         <th mat-header-cell *matHeaderCellDef> Дата </th>
         <td mat-cell *matCellDef="let element">
           {{element.date | date: 'dd.MM.yyyy'}}
-          <app-edit-table></app-edit-table>
+          <app-edit-table [record]="element"></app-edit-table>
         </td>
       </ng-container>
 

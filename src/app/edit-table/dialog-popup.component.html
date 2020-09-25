@@ -1,27 +1,50 @@
-<h1 mat-dialog-title>Редактировать запись</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Удалить запись?</mat-label>
-    <button mat-raised-button (click)="deleteRecord()"></button>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Редактировать запись</mat-label>
-    <!-- <input
-      type="text"
-      matInput
-      [(ngModel)]="record.name"
-    > -->
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button
-    mat-raised-button
-    (click)="onNoClick()"
-    type="button"
-  >Не сохранять</button>
-  <button
-    mat-raised-button
-    (click)="saveRecord()"
-    cdkFocusInitial
-  >Сохранить</button>
-</div>
+<form
+  [formGroup]="form"
+  (submit)="onSubmit()"
+>
+
+  <h1 mat-dialog-title>Редактировать запись</h1>
+  <div mat-dialog-content>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Редактировать название</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        style="width: 100%"
+        #name
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Редактировать дату</mat-label>
+      <input matInput formControlName="date" [matDatepicker]="picker" (ngModelChange)="datePicker()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div style="margin-bottom: 15px;">
+      <button mat-raised-button (click)="deleteRecord()" type="button" color="warn">
+        Удалить запись
+      </button>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-raised-button
+      (click)="onNoClick()"
+      type="button"
+    >Не сохранять</button>
+    <button
+      mat-raised-button
+      type="submit"
+    >Сохранить</button>
+  </div>
+
+  <!-- <div style="margin-top: 40px;">
+    {{ record | json }}
+  </div> -->
+
+</form>

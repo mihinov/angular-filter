@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Record } from './interfaces';
 import * as moment from 'moment';
@@ -16,7 +16,7 @@ export class RecordsService {
   create(record: Record): Observable<Record> {
     const dateMoment = moment(record.date).format('MM-DD-YYYY');
     return this.http
-      .post<any>(`${RecordsService.url}/${dateMoment}.json`, record);
+      .post<Record>(`${RecordsService.url}/${dateMoment}.json`, record);
       // .pipe(map(res => {
       //   console.log('Response:', res);
       //   return {...record, };
@@ -52,5 +52,30 @@ export class RecordsService {
           return acc;
         }, []);
       }));
+  }
+
+  update(record: Record): Observable<Record> {
+    const dateMomentLast = moment(record.lastDate).format('MM-DD-YYYY');
+    const dateMomemntNew = moment(record.date).format('MM-DD-YYYY');
+
+    const newRecordFront = {
+      date: record.date,
+      name: record.name,
+      id: record.id
+    };
+
+    console.log(newRecordFront);
+
+    if (record.date === record.lastDate) { // Дата не менялась
+      return this.http
+        .patch<Record>(`${RecordsService.url}/${dateMomentLast}/${newRecordFront.id}.json`, newRecordFront);
+    } else {
+      return this.http
+        .delete<Record>(`${RecordsService.url}/${dateMomentLast}/${newRecordFront.id}.json`)
+        .pipe(switchMap(() => {
+          return this.http.post<Record>(`${RecordsService.url}/${dateMomemntNew}.json`, newRecordFront);
+        }));
+
+    }
   }
 }

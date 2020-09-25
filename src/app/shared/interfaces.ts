@@ -13,4 +13,6 @@ export interface Record {
   id?: string;
   name: string;
   date: Date;
+  lastName?: string;
+  lastDate?: Date;
 }

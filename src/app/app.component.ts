@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Filter, Record } from './shared/interfaces';
@@ -9,7 +9,7 @@ import { RecordsService } from './shared/records.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   filter: Filter = {};
   displayedColumns: string[] = ['id', 'name', 'date'];
@@ -31,10 +31,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<Record>(this.records);
         this.dataSource.paginator = this.paginator;
       });
-
-  }
-
-  ngAfterViewInit(): void {
 
   }
 
