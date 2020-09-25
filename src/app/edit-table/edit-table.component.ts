@@ -86,7 +86,6 @@ export class DialogPopupComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(): void {
-    console.log(1);
     this.form.disable();
     this.isValid = false;
 
