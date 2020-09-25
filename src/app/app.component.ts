@@ -69,6 +69,23 @@ export class AppComponent implements OnInit {
   onSubmitAddRecord(record: Record): void {
     this.records.push(record);
     this.allRecords = this.records;
+    this.allRecords.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    this.dataSource.data = this.records;
+  }
+
+  orderEdit(record: Record): void {
+    const idx = this.allRecords.findIndex(item => item.id === record.lastId);
+
+    if (record.deleteBool) { // если запись удалена
+      this.allRecords.splice(idx, 1);
+    } else { // если запись модифицирована
+      delete record.lastId;
+      this.allRecords[idx] = record;
+      this.allRecords.sort((a, b) => a.date.getTime() - b.date.getTime());
+    }
+
+    this.records = this.allRecords;
     this.dataSource.data = this.records;
   }
 }

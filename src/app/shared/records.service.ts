@@ -60,22 +60,50 @@ export class RecordsService {
 
     const newRecordFront = {
       date: record.date,
-      name: record.name,
-      id: record.id
+      name: record.name
     };
-
-    console.log(newRecordFront);
 
     if (record.date === record.lastDate) { // Дата не менялась
       return this.http
-        .patch<Record>(`${RecordsService.url}/${dateMomentLast}/${newRecordFront.id}.json`, newRecordFront);
+        .patch<Record>(`${RecordsService.url}/${dateMomentLast}/${record.id}.json`, newRecordFront)
+        .pipe(
+          map((elem) => {
+            elem.id = record.id;
+            elem.lastId = record.lastId;
+            elem.date = new Date(elem.date);
+            return elem;
+          })
+        );
     } else {
       return this.http
-        .delete<Record>(`${RecordsService.url}/${dateMomentLast}/${newRecordFront.id}.json`)
-        .pipe(switchMap(() => {
-          return this.http.post<Record>(`${RecordsService.url}/${dateMomemntNew}.json`, newRecordFront);
-        }));
+        .delete<Record>(`${RecordsService.url}/${dateMomentLast}/${record.id}.json`)
+        .pipe(
+          switchMap(() => {
+            return this.http
+              .post<Record>(`${RecordsService.url}/${dateMomemntNew}.json`, newRecordFront)
+              .pipe(
+                map((elem) => {
+                  const name = elem.name;
+                  elem.id = name;
+                  elem.name = record.name;
+                  elem.lastId = record.lastId;
+                  elem.date = record.date;
+                  return elem;
+                })
+              );
+          })
+        );
 
     }
+  }
+
+  delete(record: Record): Observable<Record> {
+    const dateMoment = moment(record.date).format('MM-DD-YYYY');
+
+    return this.http
+      .delete<Record>(`${RecordsService.url}/${dateMoment}.json`)
+      .pipe(map(item => {
+        return record;
+      }));
   }
 }

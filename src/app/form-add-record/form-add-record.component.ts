@@ -12,14 +12,14 @@ import * as moment from 'moment';
 export class FormAddRecordComponent implements OnInit {
 
   isValid = false;
-  record: FormGroup;
+  form: FormGroup;
 
   @Output() submitEmit = new EventEmitter<any>();
 
   constructor(private recordsService: RecordsService) { }
 
   ngOnInit(): void {
-    this.record = new FormGroup({
+    this.form = new FormGroup({
       name: new FormControl(),
       date: new FormControl()
     });
@@ -27,7 +27,7 @@ export class FormAddRecordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const {name, date} = this.record.value;
+    const {name, date} = this.form.value;
     const record = {name, date};
 
     this.isValid = false;
@@ -41,13 +41,15 @@ export class FormAddRecordComponent implements OnInit {
             id: res.name
           };
           this.isValid = true;
+
+          this.form.reset();
           this.submitEmit.emit(newRecord);
         }
       );
   }
 
   validate(): void {
-    const {name, date} = this.record.value;
+    const {name, date} = this.form.value;
 
     if (!name || !date) {
       this.isValid = false;

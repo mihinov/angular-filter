@@ -15,6 +15,7 @@ export class EditTableComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   @Input() record: Record;
+  @Output() recordEditEmit = new EventEmitter<Record>();
 
   ngOnInit(): void {
   }
@@ -30,9 +31,11 @@ export class EditTableComponent implements OnInit {
       data
     });
 
-    // dialogRef.afterClosed().subscribe(res => {
-    //   console.log(res);
-    // });
+    dialogRef.afterClosed().subscribe(record => {
+      if (record) {
+        this.recordEditEmit.emit(record);
+      }
+    });
   }
 
 }
@@ -70,17 +73,22 @@ export class DialogPopupComponent implements OnInit, AfterViewInit {
 
   deleteRecord(): void {
     console.log('delete Record');
+    this.recordsService.delete(this.record)
+      .subscribe(res => {
+        res.deleteBool = true;
+        this.dialogRef.close(res);
+      });
   }
 
   onSubmit(): void {
-    console.log('save Record');
+    // console.log('save Record');
     this.record.name = this.form.value.name;
     this.record.date = this.form.value.date;
+    this.record.lastId = this.record.id;
 
     this.recordsService.update(this.record)
-      .subscribe(res => {
-        console.log(res);
-
+      .subscribe(record => {
+        this.dialogRef.close(record);
       });
   }
 

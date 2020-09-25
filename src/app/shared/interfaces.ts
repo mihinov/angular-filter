@@ -11,8 +11,10 @@ export interface FilterDate {
 
 export interface Record {
   id?: string;
+  lastId?: string;
   name: string;
-  date: Date;
   lastName?: string;
+  date: Date;
   lastDate?: Date;
+  deleteBool?: boolean;
 }
