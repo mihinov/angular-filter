@@ -30,6 +30,7 @@ export class FormAddRecordComponent implements OnInit {
     const {name, date} = this.form.value;
     const record = {name, date};
 
+    this.form.disable();
     this.isValid = false;
 
     this.recordsService.create(record)
@@ -40,9 +41,11 @@ export class FormAddRecordComponent implements OnInit {
             date: record.date,
             id: res.name
           };
-          this.isValid = true;
 
           this.form.reset();
+          this.form.enable();
+          this.isValid = false;
+
           this.submitEmit.emit(newRecord);
         }
       );

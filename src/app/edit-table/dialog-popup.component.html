@@ -25,7 +25,13 @@
     </mat-form-field>
 
     <div style="margin-bottom: 15px;">
-      <button mat-raised-button (click)="deleteRecord()" type="button" color="warn">
+      <button
+        mat-raised-button
+        (click)="deleteRecord()"
+        type="button"
+        color="warn"
+        [disabled]="!isValid"
+      >
         Удалить запись
       </button>
     </div>
@@ -36,10 +42,12 @@
       mat-raised-button
       (click)="onNoClick()"
       type="button"
+      [disabled]="!isValid"
     >Не сохранять</button>
     <button
       mat-raised-button
       type="submit"
+      [disabled]="!isValid"
     >Сохранить</button>
   </div>
 

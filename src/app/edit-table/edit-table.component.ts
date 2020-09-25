@@ -48,6 +48,7 @@ export class DialogPopupComponent implements OnInit, AfterViewInit {
 
   @ViewChild('name') nameRef: ElementRef<any>;
   form: FormGroup;
+  isValid = true;
 
   constructor(public dialogRef: MatDialogRef<DialogPopupComponent>,
               @Inject(MAT_DIALOG_DATA) public record: Record,
@@ -72,22 +73,31 @@ export class DialogPopupComponent implements OnInit, AfterViewInit {
   }
 
   deleteRecord(): void {
-    console.log('delete Record');
+    this.form.disable();
+    this.isValid = false;
+
     this.recordsService.delete(this.record)
       .subscribe(res => {
+        this.form.enable();
+        this.isValid = true;
         res.deleteBool = true;
         this.dialogRef.close(res);
       });
   }
 
   onSubmit(): void {
-    // console.log('save Record');
+    console.log(1);
+    this.form.disable();
+    this.isValid = false;
+
     this.record.name = this.form.value.name;
     this.record.date = this.form.value.date;
     this.record.lastId = this.record.id;
 
     this.recordsService.update(this.record)
       .subscribe(record => {
+        this.form.enable();
+        this.isValid = true;
         this.dialogRef.close(record);
       });
   }
